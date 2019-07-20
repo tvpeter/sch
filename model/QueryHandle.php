@@ -40,6 +40,34 @@ class QueryHandle
 		return $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 	}
+	public function selectColsOrder($columns, $table, $column, $order)
+	{
+		$k =0; $length = count($columns); 
+		$sql = "SELECT ";
+
+			foreach($columns as $column) 
+	 		{
+	 			if(++$k === $length)
+	 			{
+	 		$sql .= $column ." "; 
+  			}else{
+  	 		$sql .= $column." , ";
+				} 
+			}
+
+		$sql .= "FROM {$table} ORDER BY {$column} {$order}";
+
+		try{
+		$stmt = $this->conn->prepare($sql);
+		$stmt->execute();
+		return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+		}catch (Exception $e) {
+
+			die($e->getMessage());
+			
+		}
+	}
 
 	public function selectColumn($column, $table)
 	{
@@ -55,6 +83,37 @@ class QueryHandle
 		$n = 0; $len = count($cols);
 
 		$squery = "SELECT {$column}  FROM {$table} WHERE ";
+		
+		foreach($cols as $seartTerm=>$searchValue) 
+	 		{
+	 			if(++$n === $len)
+	 			{
+	 		$squery .= $seartTerm ." = :".$seartTerm;
+
+  			}else{
+  	 			$squery .= $seartTerm ." = :".$seartTerm." AND ";
+				} 
+			}
+		try {
+		$stmt = $this->conn->prepare($squery);
+
+		$stmt->execute($cols); 
+
+		return $stmt->rowCount();
+
+		} catch (Exception $e) {
+
+			die($e->getMessage());
+			
+		}
+		
+	}
+
+	public function passedStudents($table, $column, $cols)
+	{
+		$n = 0; $len = count($cols);
+
+		$squery = "SELECT admno  FROM {$table} WHERE {$column} >= 50 and ";
 		
 		foreach($cols as $seartTerm=>$searchValue) 
 	 		{
@@ -123,19 +182,35 @@ class QueryHandle
  	 
   		if (move_uploaded_file($_FILES[$name]['tmp_name'], $destination)) 
   		{
-  			return $destination;
+  			return $filename;
   		}
   		
   		return $destination = false;
 	}
 
-	public function sSession()
+	public function sSession($column, $table)
 	{
+		$gSessions = $this->selectColumn($column, $table);
+
 		$op = "<option selected='selected' value='' disabled='disabled'>Session</option>";
-		for ($d = date('Y') -2; $d <= date('Y')+1 ; $d++) 
-		{	
-			$op .="<option value='".$d."/".($d+1)."'>".$d."/".($d+1)."</option>";
+		foreach ($gSessions as $gSession) {
+			extract($gSession);
+			$op .="<option value='".$session."'>".$session."</option>";	
 		}
+
+		return $op;
+	}
+
+	public function editableSession($selectCols, $table, $whereCols, $orderCol, $order)
+	{
+		$sessions = $this->selectAndOrder($selectCols, $table, $whereCols, $orderCol, $order);
+
+		$op = "<option selected='selected' value='' disabled='disabled'>Session</option>";
+		foreach ($sessions as $session) {
+			extract($session);
+			$op .="<option value='".$session."'>".$session."</option>";						
+		}
+
 		return $op;
 	}
 
@@ -183,8 +258,7 @@ class QueryHandle
 
 	 	foreach($searchCols as $seartTerm=>$searchValue) 
 	 		{
-	 			if(++$k === $length2)
-	 			{
+	 			if(++$k === $length2) {
 
 	 		$sql .= $seartTerm ." = :".$seartTerm;
 
@@ -215,23 +289,27 @@ class QueryHandle
 		$k = $n =0; $length = count($selectCols); $len = count($whereCols);
 		$sql = "SELECT ";
 
-			foreach($selectCols as $selectCol) 
-	 		{
-	 			if(++$k === $length)
-	 			{
+			foreach($selectCols as $selectCol) {
+
+	 			if(++$k === $length){
+
 	 		$sql .= $selectCol ." "; 
+
   			}else{
+
   	 		$sql .= $selectCol." , ";
 				} 
 			}
 			$sql .= "FROM {$table} WHERE ";
 
-			foreach($whereCols as $seartTerm=>$searchValue) 
-	 		{
-	 			if(++$n === $len)
-	 			{
+			foreach($whereCols as $seartTerm=>$searchValue) {
+
+	 			if(++$n === $len) {
+
 	 		$sql .= $seartTerm ." = :".$seartTerm;
+
   			}else{
+
   	 		$sql .= $seartTerm ." = :".$seartTerm." AND ";
 				} 
 			}
@@ -256,24 +334,27 @@ class QueryHandle
 		$k = $n =0; $length = count($selectCols); $len = count($whereCols);
 		$sql = "SELECT ";
 
-			foreach($selectCols as $selectCol) 
-	 		{
-	 			if(++$k === $length)
-	 			{
+			foreach($selectCols as $selectCol) {
+
+	 			if(++$k === $length) {
+
 	 		$sql .= $selectCol ." "; 
+
   			}else{
   	 		$sql .= $selectCol." , ";
 				} 
 			}
 			$sql .= "FROM {$table} WHERE ";
 
-			foreach($whereCols as $seartTerm=>$searchValue) 
-	 		{
-	 			if(++$n === $len)
-	 			{
+			foreach($whereCols as $seartTerm=>$searchValue) {
+
+	 			if(++$n === $len) {
+
 	 		$sql .= $seartTerm ." = :".$seartTerm;
+
   			}else{
   	 		$sql .= $seartTerm ." = :".$seartTerm." AND ";
+
 				} 
 			}
 			try {
@@ -289,18 +370,29 @@ class QueryHandle
 		}
 	}
 
+	public function promoteClasses ($class)
+	{
+
+		$stmt = $this->conn->prepare("SELECT class from class ORDER BY class ASC");
+		$stmt->bindParam(":cc", $class);
+		$stmt->execute();
+		return $stmt->fetchAll(PDO::FETCH_ASSOC);
+	}
+
 	public function selectDistinct($column, $table, $whereCols)
 	{
 		$n = 0; $len = count($whereCols);
 
 		$sql = "SELECT DISTINCT ($column) FROM {$table} WHERE ";
 
-		foreach($whereCols as $seartTerm=>$searchValue) 
-	 		{
-	 			if(++$n === $len)
-	 			{
+		foreach($whereCols as $seartTerm=>$searchValue) {
+
+	 			if(++$n === $len){
+
 	 		$sql .= $seartTerm ." = :".$seartTerm;
+
   			}else{
+
   	 		$sql .= $seartTerm ." = :".$seartTerm." AND ";
 				} 
 			}
@@ -314,11 +406,62 @@ class QueryHandle
 		} catch (Exception $e) {
 			die($e->getMessage());
 		}
+	}
 
+	public function getTermClasses($table, $session, $term)
+	{
+		$qr = $this->conn->prepare("SELECT DISTINCT class FROM {$table} WHERE SESSION = :sess AND term = :tm ORDER BY class ASC");
+		$qr ->execute([":sess"=>$session, ":tm"=>$term]);
+
+		return $qr->fetchAll(PDO::FETCH_ASSOC);
+	}
+
+
+public function getSessionSubjects($session, $class)
+	{
+		$qr = $this->conn->prepare("SELECT DISTINCT subj FROM comb WHERE SESSION = :sess AND class=:cc ORDER BY subj ASC");
+		$qr ->execute([":sess"=>$session, ":cc"=>$class]);
+
+		return $qr->fetchAll(PDO::FETCH_ASSOC);
 
 	}
 
-	
+public function getSessionAvgs($session, $class, $subject)
+{
+	$stmt = $this->conn->prepare("SELECT AVG(term1) AS term1Avg, AVG(term2) AS term2Avg, AVG(term3) AS term3Avg FROM comb WHERE SESSION =:ss  AND class =:cc AND subj =:sb");
+	$stmt->execute([":ss"=>$session, ":cc"=>$class, ":sb"=>$subject]);
+	return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+}
+
+	public function subAndAvg($whereCols)
+	{
+		$n = 0; $len = count($whereCols);
+
+		$sql = "SELECT DISTINCT subj, classavg FROM scores WHERE ";
+
+		foreach($whereCols as $seartTerm=>$searchValue) {
+
+	 			if(++$n === $len) {
+
+	 		$sql .= $seartTerm ." = :".$seartTerm;
+
+  			}else{
+
+  	 		$sql .= $seartTerm ." = :".$seartTerm." AND ";
+				} 
+			}
+			try {
+			$stmt = $this->conn->prepare($sql);
+
+			$stmt ->execute($whereCols);
+
+			return $stmt->fetchAll(PDO::FETCH_ASSOC);
+			
+		} catch (Exception $e) {
+			die($e->getMessage());
+		}
+	}
 
 	//selectCols is simple array of columns to be selected
 	//searchcol is the col to use before not in clause
@@ -335,9 +478,7 @@ class QueryHandle
 				$sql .= $key." , ";
 			}
 		}
-		$sql .=  "FROM {$table} 
-		WHERE {$scol} NOT IN 
-		( '" . implode( "', '" , $cols ) . "' )";
+		$sql .=  "FROM {$table} WHERE {$scol} NOT IN ( '" . implode( "', '" , $cols ) . "' )";
 
 		try {
 
@@ -354,7 +495,7 @@ class QueryHandle
 	}
 
 
-	function showGrade($avr){
+	public function showGrade($avr){
    	$avr = round($avr);
   	 $grade = $remark = "";
 	if($avr>=80){ $grade='A1'; $remark='EXCELLENT';}
@@ -378,8 +519,6 @@ return array($grade, $remark);
 		$stmt->execute([":cc"=>$class,  ":ss"=>$session, ":tt"=>$term, ":sj"=>$subject]);
 
 		return $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-
 	}
 	
 
@@ -411,6 +550,16 @@ return array($grade, $remark);
 		return $stmt->fetch(PDO::FETCH_ASSOC);
 	}
 
+	public function combResult($admno, $session, $class)
+	{
+		$stmt = $this->conn->prepare("SELECT s.name, s.dob, s.sex, s.passport, r.subjtotal, r.avg, r.pos, r.recommend, r.date, r.status from students s, combr r where s.admno=r.admno and s.session=r.session and s.class=r.class and r.admno=:adm and r.session=:sess and r.class=:cl");
+
+		$stmt->execute([":adm"=>$admno, ":sess"=>$session, ":cl"=>$class]);
+
+		return $stmt->fetch(PDO::FETCH_ASSOC);
+	}
+
+
 	public function subjectStats($class, $session, $term, $subject)
 	{
 		$stmt = $this->conn->prepare("SELECT count(total) as sbn, AVG(total) as sbavg, min(total) as sbmin, max(total) as sbmax  FROM scores WHERE class=:cc AND session=:sess and term=:tt and subj=:sj");
@@ -421,7 +570,7 @@ return array($grade, $remark);
 		
 	}
 
-
+	
 	public function annualSubject($session, $class, $subject)
 	{
 		$stmt = $this->conn->prepare("SELECT c.admno, c.term1+c.term2+c.term3 as tt, d.name FROM comb c, students d WHERE c.admno=d.admno and c.session=d.session and c.class=d.class and c.session=:sess and c.class=:cc and c.subj=:sub and c.term1 is not null and c.term2 is not null and c.term3 is not null order by tt DESC");
@@ -461,7 +610,74 @@ return array($grade, $remark);
 		return $stmt->fetchAll(PDO::FETCH_ASSOC);
 	}
 
-	
+	public function position($pos)
+	{
+		if (($pos==1) || ($pos ==21) || ($pos == 31) || ($pos == 41) || ($pos == 51)) { 
+			$pos=$pos.'st';
+		}elseif(($pos==2) || ($pos==22) || ($pos == 32) || ($pos == 42) ||   ($pos == 52))
+		{
+			$pos=$pos.'nd';
+		}elseif(($pos==3) || ($pos==23)){$pos=$pos.'rd'; }
+          else { $pos=$pos.'th'; }
+        return $pos;
+	}
 
+	public function loggedIn ()
+	{
+		if(!isset($_SESSION['_ref_user']) || !isset($_SESSION['_id_']) || !isset($_SESSION['role']) || !isset($_SESSION['last_acted_on'])){
+		return header('location:logout.php');
+		}
+		return true;
+	}
+
+	public function checkTime(){
+	  if(isset($_SESSION['last_acted_on']) && (time() - $_SESSION['last_acted_on'] > 60*30) ){
+ 	 return header('location:logout.php');
+		} else {
+ 	return $_SESSION['last_acted_on'] = time();  }
+
+	}
+
+	public function searchResults($search){
+		$search = "%$search%";
+		$stmt=$this->conn->prepare("SELECT name, admno, class, dater, session FROM students WHERE name LIKE :s OR admno LIKE :s");
+		$stmt->bindParam(":s", $search);
+		$stmt->execute();
+		return $stmt->fetchAll(PDO::FETCH_ASSOC);
+	}
+
+	public function login($uname, $pword)
+{
+ //$result = [];
+  $stmt = $this->conn->prepare("SELECT id, name, role, pvihiga, ustarp FROM uzerz WHERE ustarp = :uname AND status='active'");
+  $stmt->bindParam(":uname", $uname);
+  $stmt ->execute();
+  $count = $stmt->rowCount();
+  $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+  if ($count != 1 || !password_verify($pword, $row['pvihiga'])) {
+    return false;
+  }else {
+    return $row;
+  }
+ 
+}
+
+public function combStats($class, $session, $sb)
+{
+	$stmt = $this->conn->prepare("select max(avg) as cmbmax, min(avg) as cmbmin, avg(avg) as cmbavg from comb where class=:cc and session=:ss and subj=:sb");
+	$stmt->execute([":cc"=>$class, ":ss"=>$session, ":sb"=>$sb]);
+	return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
+public function cleanInput($data) {
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
+}
+
+	
+	
 }
 

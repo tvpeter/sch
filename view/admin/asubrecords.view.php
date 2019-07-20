@@ -30,7 +30,7 @@
                             </div></div>
                                 </form><hr>
                                 <?php if (isset($_POST['session']) && isset($_POST['class'])){ ?>
-                                <div class="p-3 mb-2 bg-primary text-white" align="center"><?= $_POST['class']." STUDENTS PERFORMANCE IN ".$_POST['subject']." ".$_POST['session']; ?></div>
+                                <div class="p-3 mb-2 bg-dark text-white" align="center"><?= $_POST['class']." STUDENTS PERFORMANCE IN ".$_POST['subject']." ".$_POST['session']; ?></div>
                                   <div class="table-responsive m-t-40">
                                     <table id="myTable" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
                                         <thead>
@@ -84,7 +84,7 @@
 
 
                                          }else{ 
-                                           echo "SELECT TO VIEW STUDENTS' ANNUAL PERFORMANCE IN A SUBJECT";
+                                           echo "SELECT TO VIEW AND PRINT STUDENTS ANNUAL RESULTS";
                                          }
                                            ?>    
                                                                              
