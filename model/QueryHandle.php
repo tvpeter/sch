@@ -319,7 +319,7 @@ class QueryHandle
 
 			$stmt = $this->conn->prepare($sql);
 
-			$stmt ->execute($whereCols);
+			$stmt->execute($whereCols);
 
 			return $stmt->fetchAll(PDO::FETCH_ASSOC);
 			
@@ -358,10 +358,9 @@ class QueryHandle
 				} 
 			}
 			try {
-
 			$stmt = $this->conn->prepare($sql);
 
-			$stmt ->execute($whereCols);
+			$stmt->execute($whereCols);
 
 			return $stmt->fetch(PDO::FETCH_ASSOC);
 			
@@ -370,6 +369,10 @@ class QueryHandle
 		}
 	}
 
+	// public function selectFees ()
+	// {
+	// 	$sqlQuery = "SELECT FROM fees WHERE session=:"
+	// }
 	public function promoteClasses ($class)
 	{
 

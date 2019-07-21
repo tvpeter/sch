@@ -6,7 +6,7 @@
                         <div class="card">
                             
                             <div class="card-body">
-                                <div style="width:835px; font-size: 12px; font-family: 'Courier New', Courier, monospace;">
+      <div style="width:835px; font-size: 12px; font-family: 'Courier New', Courier, monospace;">
             <table border="1">
               <tr>
         <td align="center" width="18%"><img src="img/scco.png" width="100" height="75"/></td>
@@ -75,8 +75,7 @@
  <tr><td colspan="3">AVERAGE:&nbsp;<?php echo round($avg, 2); ?></td>
     <td colspan="4" align="center">POSITION:&nbsp;<?php echo $query->position($position); ?>&nbsp;OUT OF&nbsp;<?= $totalStudents; ?></td>
           <td colspan="4">ANALYSIS:&nbsp;<?php $analysis=""; if ($avg>=50){$analysis='PASSED';} else {   $analysis='FAILED'; } echo $analysis; ?></td>
-        
-          </tr>
+   </tr>
         <tr><td colspan="3" align="center"><b>AFFECTIVE DOMAIN</b></td>
             <td  colspan="3" align="center"><b>PSYCHOMOTOR DOMAIN</b></td>
             
@@ -86,76 +85,111 @@
 
        <tr><td colspan="2">BEHAVIOUR</td>
         <td >GRADING</td>
-        <td  colspan="2">ACTIVITY</td><td>GRADING</td>
-       <td colspan="5" align="center" bgcolor="#F5F5F5" rowspan="13">
+        <td colspan="2">ACTIVITY</td><td>GRADING</td>
+        <td colspan="5"></td></tr>
+       <!-- <td colspan="5" align="center" bgcolor="#F5F5F5" rowspan="13"> -->
 
         <?php 
-        if ($fees) {
+        // if ($fees) {
 
-         $total =$tuition+$dev+$medical+$exams+ $idcard + $locker + $cbooklet + $edulevy +$pta+$lesson+$utility+$cathe+$sports+$dvd+$party;
+        //  $total =$tuition+$dev+$medical+$exams+ $idcard + $locker + $cbooklet + $edulevy +$pta+$lesson+$utility+$cathe+$sports+$dvd+$party;
          ?>
 
 
-       <table border='1' width='100%' style="font-family:Courier NEW">
+      <!--  <table border='1' width='100%' style="font-family:Courier NEW">
        <tr><td colspan='2' align="center"><strong>NEXT TERM SCHOOL FEES</strong></td></tr>
-       <tr><td ><strong>ITEM</strong></td><td ><strong>AMOUNT</strong></td></tr>
-    <?php  if ($tuition > 0) {  echo "<tr><td >TUITION</td><td >$tuition</td></tr>"; }
-       if ($dev > 0) {  echo "<tr><td >DEVELOPMENT LEVY</td><td >$dev</td></tr>"; }
-       if ($medical > 0) {  echo "<tr><td >MEDICAL</td><td >$medical</td></tr>"; }
-        if ($exams > 0) {  echo "<tr><td >EXAMINATIONS </td><td >$exams</td></tr>"; }
-          if ($idcard > 0) {  echo "<tr><td >ID CARD (SS ONE ONLY) </td><td >$idcard</td></tr>"; }
-            if ($locker > 0) {  echo "<tr><td >LOCKER </td><td >$locker</td></tr>"; }
-            if ($cbooklet > 0) {  echo "<tr><td >CONTINUOUS ASSESSMENT</td><td >$cbooklet</td></tr>"; }
-              if ($edulevy> 0) {  echo "<tr><td >EDUCATION LEVY </td><td >$edulevy</td></tr>"; }
+       <tr><td ><strong>Fees to be paid in the bank</strong></td><td ><strong>AMOUNT</strong></td></tr>
+       <tr><td colspan='2' >Bank Name: 0020993956.</td></tr>
+       <tr><td colspan='2' >Bank Account number: 0020993956.</td></tr>
+       <tr><td ><strong>Fees to be paid in School</strong></td><td ><strong>AMOUNT</strong></td></tr>
+     </table> -->
+
+    <?php 
+     // if ($tuition > 0) {  echo "<tr><td >TUITION</td><td >$tuition</td></tr>"; }
+
+     // if ($tuition > 0) {  echo "<tr><td >TUITION</td><td >$tuition</td></tr>"; }
+     //   if ($dev > 0) {  echo "<tr><td >DEVELOPMENT LEVY</td><td >$dev</td></tr>"; }
+     //   if ($medical > 0) {  echo "<tr><td >MEDICAL</td><td >$medical</td></tr>"; }
+     //    if ($exams > 0) {  echo "<tr><td >EXAMINATIONS </td><td >$exams</td></tr>"; }
+     //      if ($idcard > 0) {  echo "<tr><td >ID CARD (SS ONE ONLY) </td><td >$idcard</td></tr>"; }
+     //        if ($locker > 0) {  echo "<tr><td >LOCKER </td><td >$locker</td></tr>"; }
+     //        if ($cbooklet > 0) {  echo "<tr><td >CONTINUOUS ASSESSMENT</td><td >$cbooklet</td></tr>"; }
+     //          if ($edulevy> 0) {  echo "<tr><td >EDUCATION LEVY </td><td >$edulevy</td></tr>"; }
       
-        if ($pta > 0) {  echo "<tr><td >PTA</td><td >$pta</td></tr>"; }
-       if ($lesson > 0) {  echo "<tr><td >EXTRA CLASS</td><td >$lesson</td></tr>"; }
-       if ($utility > 0) {  echo "<tr><td >UTILITY</td><td >$utility</td></tr>"; }
-        if ($cathe > 0) {  echo "<tr><td >CATHEDRATICUM </td><td >$cathe</td></tr>"; }
-          if ($sports > 0) {  echo "<tr><td >SPORTS</td><td >$sports</td></tr>"; }
-            if ($party > 0) {  echo "<tr><td >CHRISTMAS PARTY</td><td >$party</td></tr>"; }
-            if ($dvd > 0) {  echo "<tr><td >DVD </td><td >$dvd</td></tr>"; }
-              echo "<tr><td ><strong>TOTAL</strong></td><td ><strong>N".number_format($total)."</strong></td></tr>";
-                echo "<tr><td colspan='2' >Pay to Diamond Bank Account number: 0020993956.</td></tr> </table>";
+     //    if ($pta > 0) {  echo "<tr><td >PTA</td><td >$pta</td></tr>"; }
+     //   if ($lesson > 0) {  echo "<tr><td >EXTRA CLASS</td><td >$lesson</td></tr>"; }
+     //   if ($utility > 0) {  echo "<tr><td >UTILITY</td><td >$utility</td></tr>"; }
+     //    if ($cathe > 0) {  echo "<tr><td >CATHEDRATICUM </td><td >$cathe</td></tr>"; }
+     //      if ($sports > 0) {  echo "<tr><td >SPORTS</td><td >$sports</td></tr>"; }
+     //        if ($party > 0) {  echo "<tr><td >CHRISTMAS PARTY</td><td >$party</td></tr>"; }
+     //        if ($dvd > 0) {  echo "<tr><td >DVD </td><td >$dvd</td></tr>"; }
+           //   echo "<tr><td ><strong>TOTAL</strong></td><td ><strong>N".number_format($total)."</strong></td></tr>";
+    // }else{ echo "SCHOOL FEES HAS NOT BEEN PUBLISHED. CONTACT FINANCE DEPARTMENT FOR DETAILS"; }
+
        ?>
 
-      
- <?php }else{ echo "SCHOOL FEES HAS NOT BEEN PUBLISHED. CONTACT FINANCE DEPARTMENT FOR DETAILS"; } ?>
+       <!-- </td></tr> -->
 
-       </td></tr>
+            <tr><td  colspan="2">AEST. APPREC.</td><td><?php if(!empty($aestd)){echo htmlentities($aestd); }?></td><td class="text-left" colspan="2">GAMES</td><td><?php if(!empty($games)){ echo htmlentities($games); }?></td>
+            <td colspan="5" align="center"><strong>NEXT TERM SCHOOL FEES</strong></td>
+            </tr>
 
-            <tr><td  colspan="2">AEST. APPREC.</td><td><?php if(!empty($aestd)){echo htmlentities($aestd); }?></td><td class="text-left" colspan="2">GAMES</td><td><?php if(!empty($games)){ echo htmlentities($games); }?></td></tr>
+             <tr><td colspan="2">CREATIVITY</td><td><?php if(!empty($creativity)){ echo $creativity;} ?></td><td colspan="2">SPORTS</td><td><?php if(!empty($sport)){ echo htmlentities($sport);} ?></td>
+              <td colspan="4">Fees to be paid in School</td><td>Amount</td>
+             </tr>
 
-             <tr><td colspan="2">CREATIVITY</td><td><?php if(!empty($creativity)){ echo $creativity;} ?></td><td colspan="2">SPORTS</td><td><?php if(!empty($sport)){ echo htmlentities($sport);} ?></td></tr>
+            <tr><td colspan="2">HONESTY</td><td><?php if(!empty($honesty)){ echo htmlentities($honesty);} ?></td><td  colspan="2">HANDLING TOOLS</td><td><?php if(!empty($handle)){echo $handle;} ?></td>
+              <td colspan="4">Fees to be paid in the Bank</td><td>Amount</td>
+            </tr>
 
-            <tr><td colspan="2">HONESTY</td><td><?php if(!empty($honesty)){ echo htmlentities($honesty);} ?></td><td  colspan="2">HANDLING TOOLS</td><td><?php if(!empty($handle)){echo $handle;} ?></td></tr>
+            <tr><td colspan="2">INITIATIVE</td><td><?php if(!empty($initiative)){echo htmlentities($initiative);} ?></td><td  colspan="2">HANDWRITING</td><td><?php if(!empty($handle)){ echo $handle;} ?></td>
+              <td colspan="5">Bank Name: Access Bank Plc.</td>
 
-            <tr><td colspan="2">INITIATIVE</td><td><?php if(!empty($initiative)){echo htmlentities($initiative);} ?></td><td  colspan="2">HANDWRITING</td><td><?php if(!empty($handle)){ echo $handle;} ?></td></tr>
+            </tr>
 
-            <tr><td colspan="2">LEADERSHIP ROLE</td><td><?php if(!empty($leadership)){echo htmlentities($leadership);} ?></td><td colspan="2" >COMMUNICATION </td><td><?php if(!empty($communication)){echo htmlentities($communication);} ?></td></tr>
+            <tr><td colspan="2">LEADERSHIP ROLE</td><td><?php if(!empty($leadership)){echo htmlentities($leadership);} ?></td><td colspan="2" >COMMUNICATION </td><td><?php if(!empty($communication)){echo htmlentities($communication);} ?></td>
+              <td colspan="5" >Bank Account Number:  0020993956</td>
 
-            <tr><td colspan="2">NEATNESS</td><td><?php if(!empty($neatness)){echo $neatness; }?></td><td  colspan="2">PAINTING &amp; DRW.</td><td><?php if(!empty($painting)){echo htmlentities($painting);} ?></td></tr>
+            </tr>
+
+            <tr><td colspan="2">NEATNESS</td><td><?php if(!empty($neatness)){echo $neatness; }?></td><td  colspan="2">PAINTING &amp; DRW.</td><td><?php if(!empty($painting)){echo htmlentities($painting);} ?></td>
+              <td align="center"  colspan="5"></td>
+            </tr>
 
 
-            <tr><td colspan="2">OBEDIENCE</td><td><?php if(!empty($obedience)){echo htmlentities($obedience); } ?></td><td  colspan="2"> MUSICAL SKILL </td><td><?php if(!empty($painting)){echo htmlentities($painting);} ?></td></tr>
+            <tr><td colspan="2">OBEDIENCE</td><td><?php if(!empty($obedience)){echo htmlentities($obedience); } ?></td><td  colspan="2"> MUSICAL SKILL </td><td><?php if(!empty($painting)){echo htmlentities($painting);} ?></td>
+              <td align="center"  colspan="5"> <strong>KEY TO RATINGS</strong></td>
+            </tr>
 
             <tr><td colspan="2">POLITENESS</td><td><?php if(!empty($politeness)){echo $politeness; } ?></td>
-              <td colspan="2">CRAFT</td><td><?php if(!empty($craft)){echo $craft; }?></td></tr>
+              <td colspan="2">CRAFT</td><td><?php if(!empty($craft)){echo $craft; }?></td>
+              <td colspan="3">A(EXCELLENT)</td><td colspan="2"> &#8805 80%</td>
+            </tr>
 
 
-    <tr><td colspan="2">PUNCTUALITY</td><td><?php if(!empty($punctuality)){echo htmlentities($punctuality); } ?></td><td colspan="2">GYMNASTICS</td><td><?php if(!empty($gymnastics)){echo htmlentities($gymnastics);} ?></td></tr>
+    <tr><td colspan="2">PUNCTUALITY</td><td><?php if(!empty($punctuality)){echo htmlentities($punctuality); } ?></td><td colspan="2">GYMNASTICS</td><td><?php if(!empty($gymnastics)){echo htmlentities($gymnastics);} ?></td>
+            <td colspan="3">B(VERY GOOD)</td><td colspan="2">60-79%</td>
+    </tr>
 
-            <tr><td colspan="2">SELF-CONTROL</td><td><?php if(!empty($scontrol)){ echo htmlentities($scontrol);} ?></td><td class="text-center"  colspan="3"> <strong>KEY TO RATINGS</strong></td></tr>
+            <tr><td colspan="2">SELF-CONTROL</td><td><?php if(!empty($scontrol)){ echo htmlentities($scontrol);} ?></td>
+              <td colspan="2">ORG. ABILITY</td><td><?php if(!empty($organised)){echo htmlentities($organised); } ?></td>
+              <td colspan="3">C(GOOD)</td><td colspan="2">50-59%</td>
+            </tr>
 
-            <tr><td colspan="2">SENSE OF RESP.</td><td><?php if (!empty($responsibility)) { echo htmlentities($responsibility); } ?></td><td colspan="2">A(EXCELLENT)</td><td> &#8805 80%</td></tr>
+            <tr><td colspan="2">SENSE OF RESP.</td><td><?php if (!empty($responsibility)) { echo htmlentities($responsibility); } ?></td><td colspan="2">PERSEVERANCE</td><td><?php if(!empty($persevere)){ echo htmlentities($persevere); } ?></td>
+              <td colspan="3" >D(FAIR)</td><td colspan="2">40-49%</td>
+              </tr>
 
-           <tr><td colspan="2">SOCIABILITY</td><td><?php if(!empty($sociability)){echo htmlentities($sociability); } ?></td><td colspan="2">B(VERY GOOD)</td><td>60-79%</td></tr>
+           <tr><td colspan="2">SOCIABILITY</td><td><?php if(!empty($sociability)){echo htmlentities($sociability); } ?></td>
+            <td colspan="2" class="text-left">COOP. SPIRIT</td><td><?php if(!empty($cooperate)){echo htmlentities($cooperate); } ?></td>
+              <td colspan="3" >E(POOR)</td><td colspan="2">&lt;40%</td>
+           </tr>
 
-           <tr><td colspan="2">ORG. ABILITY</td><td><?php if(!empty($organised)){echo htmlentities($organised); } ?></td><td class="text-left">C(GOOD)</td><td>50-59%</td><td colspan="6" class="text-left">FORM MASTERS' REMARKS:&nbsp;<em><?php if(!empty($tcomment)){echo htmlentities($tcomment); } ?></em></td> </tr>
+           <tr><td colspan="11" ><strong>FORM MASTERS' REMARKS:</strong><em><?php if(!empty($tcomment)){echo htmlentities($tcomment); } ?></em></td> </tr>
 
-           <tr><td colspan="2">PERSEVERANCE</td><td><?php if(!empty($persevere)){ echo htmlentities($persevere); } ?></td><td class="text-left" >D(FAIR)</td><td>40-49%</td><td colspan="6" class="text-left">SIGNATURE AND DATE:&nbsp;</td></tr>
+           <tr><td colspan="11" class="text-left">SIGNATURE AND DATE:&nbsp;</td></tr>
 
-           <tr ><td colspan="2" class="text-left">COOP. SPIRIT</td><td><?php if(!empty($cooperate)){echo htmlentities($cooperate); } ?></td><td class="text-left" >E(POOR)</td><td>&lt;40%</td><td colspan="6" class="text-left"><strong>PRINCIPAL'S REMARKS:</strong>&nbsp;</td></tr>
+           <tr ><td colspan="11" class="text-left"><strong>PRINCIPAL'S REMARKS:</strong>&nbsp;</td></tr>
 
      <tr ><td colspan="6">DATE AND SIGNATURE:</td><td align="center" colspan="5"><b>PRINCIPAL:&nbsp;<?php echo 'REV. SR. STELLA AKPAN ' ?></b></td> </tr>
                  

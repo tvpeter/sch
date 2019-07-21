@@ -1,10 +1,10 @@
 <?php require 'adminheader.php';  ?>            
 <div class="container-fluid">
         <style type="text/css"> input {  text-align: right; }</style>
-                      <div class="row">
-                      <div class="col-lg-6">
+            <div class="row">
+            <div class="col-lg-6">
                         <div class="card card-outline-info">
-                    <div class="p-3 mb-2 bg-dark text-white">SET SCHOOL FEES FOR A TERM (SENIOR SECTION)</div>
+                    <div class="p-3 mb-2 bg-dark text-white">SELECT SECTION AND SET SCHOOL FEES FOR A TERM </div>
                     <form action="#" method="post" class="form-horizontal form-bordered">
                     <div class="row"><div class="col-md-12 text-center"><?php  if (isset($error['failure'])) {  echo "<span class='alert alert-danger'>".$error['failure']."</span>";  }
                         if (isset($_GET['msg'])) {  echo "<span>".$_GET['msg']."</span>";  }
@@ -77,7 +77,7 @@
                         <div class="row"> <div class="col-md-6">
                                       <label class="control-label">EDUCATIONAL LEVY </label>
         <input type="number" class="form-control" required="required" name="elevy" value="0"> 
-                    </div>
+                    </div> -->
 
                     <div class="col-md-6">
                      <label class="control-label">SECTION: </label>
@@ -97,30 +97,27 @@
                           
                         </div>
                     </div>
+
+
+
                          <div class="col-lg-6">
                         <div class="card">
-
-       
-
-                            <form method="post" name="form3">
-                            <div class="form-actions">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="row">
-                                                    <div class="col-md-3">
-                                            <select class="custom-select" name="gsession" required aria-required="true">
-                                            <?= $gsession; ?>
-                                                        </select>
-                                                 </div>
+                <form method="post" name="form3">
+                <div class="form-actions">
+                <div class="row">
+                <div class="col-md-12">
+                <div class="row">
+                <div class="col-md-3">
+                <select class="custom-select" name="gsession" required aria-required="true">
+                <?= $gsession; ?>
+                </select>
+                </div>
                                                
-                                                 <div class="col-md-3">
-                                            <select class="custom-select" name="gterm" required aria-required="true">
-                                                            <?= $gterm; ?>
-                                                        </select>
-                                                 </div>
+                <div class="col-md-3">
+                <select class="custom-select" name="gterm" required aria-required="true">
+                <?= $gterm; ?></select></div>
 
-                                                  <div class="col-md-3">
-                    
+                <div class="col-md-3">
                     <select class="custom-select" name="sectn" required aria-required="true">
                         <option selected='selected' disabled='disabled' value=''> Section </option>                        
                         <option value='JS'>JSS</option> 
@@ -128,8 +125,8 @@
                                  </select>
                   <?php  if (isset($error['section'])) {  echo "<span class='text-danger'>".$error['section']."</span>";  } ?></div>
 
-                                                 <div class="col-md-3">
-                                            <button type="submit" class="btn btn-dark btn-outline" name="check"> <i class="fa fa-check"></i> Check</button>
+                    <div class="col-md-3">
+    <button type="submit" class="btn btn-dark btn-outline" name="check"> <i class="fa fa-check"></i> Check</button>
                                                  </div>
 
 

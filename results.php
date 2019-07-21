@@ -9,7 +9,7 @@ require 'bridge.php';
     $newS = substr( $gsession, -4); $nn = $newS+1; $nsession = $newS.'/'.$nn;
     $section = substr($gclass, 0, 2);
 
-    $fees = $query->selectRow(["*"], "fees", ["session"=>$nsession, "term"=>$nterm, "section"=>$section]);
+    $fees =$query->selectRow(["*"], "fees", ["session"=>$nsession, "term"=>$nterm, "section"=>$section]);
     if ($fees) {
         extract($fees);
     }
@@ -28,7 +28,6 @@ require 'bridge.php';
     if ($termInfo) {
         extract($termInfo);
     }
-
 
 
     $studentrs = $query->selectAndOrder(["subj", "test", "exam", "total", "classavg", "min", "maxi", "subjpos"], "scores", ["admno"=>$gadmno, "session"=>$gsession, "class"=>$gclass, "term"=>$gterm], "subj", "ASC");
