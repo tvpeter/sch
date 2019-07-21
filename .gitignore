@@ -22,6 +22,7 @@ phpmyadmin
 *.html
 *.css
 *.js
+img/
 view/admin/README.md
 www/config.php
 namp.box
