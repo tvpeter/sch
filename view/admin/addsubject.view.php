@@ -9,10 +9,12 @@
                          <?php echo strtoupper($gterm) ."SESSION $gsession "; ?><br>
                           <span class="text-danger">
                             <?php 
-                                   if(!empty($totalsubjects)) { 
-                              echo  "TOTAL SUBJECTS TO BE REGISTERED FOR  $gclass  IS $subno"; 
+                                   if(empty($subno)) { 
+                                    echo ("SET THE NUMBER OF SUBJECTS FOR THIS CLASS THIS TERM");
+                              
                                  } else { 
-                                echo ("SET THE NUMBER OF SUBJECTS FOR THIS CLASS THIS TERM"); }
+                                  echo  "TOTAL SUBJECTS TO BE REGISTERED FOR  $gclass  IS $subno"; 
+                                 }
                                  ?>
                               </span>
                             </h4>
@@ -57,7 +59,8 @@
                                 </div>
                             </div>
                         </div>
-                    </div>            
+                    </div> 
+                               
                 </div>
             </div>
            

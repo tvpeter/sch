@@ -9,13 +9,15 @@
                                                 <div class="row">
                                                     <div class="col-md-3">
                                <select class="form-control custom-select" name="session" required aria-required="true">
-                                    <?= $session; ?>   </select>
+                                    <?= $gsession; ?>   </select>
                                 </div>  <div class="col-md-6">
                                     <button type="submit" class="btn btn-dark btn-outline" name="check"><i class="fa fa-check"></i>Check</button></div>
                                 </div>
                             </div></div>
                                 </form><hr>
-                                <h4 class="card-title" align="center"><?= "ALL STUDENTS IN THE SCHOOL FOR SESSION ".$select; ?></h4>
+                                 <?php if (isset($_POST['session'])){ ?>
+
+                                <h4 class="card-title" align="center"><?= "ALL STUDENTS IN THE SCHOOL FOR SESSION ".$session; ?></h4>
                                   <div class="table-responsive m-t-40">
                                     <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
                                         <thead>
@@ -31,15 +33,15 @@
                                 extract($student); ?>  
                                             <tr>
                                                 <td><?= $n; ?></td>
-                                                <td><?= $name; ?></td>
-                                                <td><?= $admno; ?></td>
+                            <td class="text-primary"><?= $name; ?></td>
+                            <td class="text-danger"><?= $admno; ?></td>
                                                 <td><?= $dob; ?></td>
                                                 <td><?= $sex; ?></td>
-                                                <td><?= $address; ?></td>
-                                                <td><?= $class; ?></td>
+                                    <td class="text-info"><?= $address; ?></td>
+                                <td class="text-success"><?= $class; ?></td>
                                                 <td><?= $dater; ?></td>
-                                                <td align="center"><a href="student.php?cid=<?= $admno ?>&session=<?= $select ?>" title="Details"><i class="fa fa-telegram fa-2x"></i></a></td>
-                                              <td align="center"> <a href="delete.php?id=<?= $admno ?>&session=<?= $select ?>" title="Delete"><i class="fa fa-trash fa-2x"></i></a></td>
+                      <td align="center"><a href="student.php?cid=<?= $admno ?>&session=<?= $session ?>" title="Details"><i class="fa fa-telegram fa-2x"></i></a></td>
+                        <td align="center"> <a href="delete.php?id=<?= $admno ?>&session=<?= $session ?>" title="Delete" onclick="return confirm('Are you sure you want to delete a student?')"><i class="fa fa-trash fa-2x"></i></a></td>
                                             </tr>
                                            <?php } ?>    
                                                                              
@@ -49,6 +51,10 @@
                                     </table>  
                                      
                                 </div>
+                            <?php } else{
+                                echo "Select session to view all students";
+                            } ?>
+
                             </div>
                         </div>
                     </div>

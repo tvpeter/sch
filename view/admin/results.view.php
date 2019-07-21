@@ -1,167 +1,205 @@
-<?php require 'adminheader.php';  
-?>            
-<div class="container-fluid">
+            
+<div class="container-fluid" align="center">
                       <div class="row">
                     
-                       <div class="col-lg-10">
+                       <div class="col-lg-12">
                         <div class="card">
                             
                             <div class="card-body">
-                                <div style="width:820px; font-size: 12px;">
-                                    <table style="font-weight: lighter; font-family:Courier NEW; margin: auto;" align="center" class="table table-condensed table-bordered table-striped">
-                                        <tbody>
+      <div style="width:835px; font-size: 12px; font-family: 'Courier New', Courier, monospace;">
+            <table border="1">
+              <tr>
+        <td align="center" width="18%"><img src="img/scco.png" width="100" height="75"/></td>
+   <td align="center" colspan="9"><strong>ST. CATHERINE'S COLLEGE</strong></font><br><font face="Palatino Linotype, Book Antiqua, Palatino, serif">P.O. Box 626 Ogoja<br /> Cross River State</font><br><font face="Courier New, Courier, monospace"><tt>http://www.sccogoja.com</tt></font><br><b>STUDENTS RESULT</b></td>
+   <td><div style="width:90px; height:90px;"><?php if (!empty($passport)){  echo "<img src='passports/$passport' width='90' height='85'>  ";  } ?></div></td>
+   </tr>
+
+            <tr>
+             <td colspan="5">STUDENT NAME: <?= $name; ?></td>
+             <td colspan="3">CLASS:<?= $gclass; ?></td>
+             <td colspan="3">ADMISSION NO: <?= $gadmno; ?></td>   </tr>
+                <tr>
+                                     <td colspan="2">GENDER: <?= strtoupper($sex); ?></td> 
+                                    <td colspan="3">DOB: <?= $dob; ?></td>
+                          <td colspan="3">SESSION: <?= $gsession; ?></td>
+                          <td colspan="3">TERM: <?= strtoupper($gterm); ?></td>
+                                               </tr>
+            <tr> 
+               <td colspan="2">TOTAL DAYS: <?php if($studentAtt){ echo $total; } ?></td>
+                 
+                 <td colspan="2">ATTENDANCE: <?php if($studentAtt){ echo $present; }?></td>
+                 <td colspan="4">TERM STARTED:&nbsp;<?php if (!empty($termst)) { echo htmlentities($termst); }   ?></td>
+              <td colspan="3">TERM ENDED: <?php if(!empty($terme)){  echo htmlentities($terme); }?></td>                                  </tr>
+                                                                              
+            <tr>
+                <td colspan="2">SUBJECTS</td>
+                <td align="center" style="font-size: 11.5px;">CA TOTAL <br>(30MKS)</td>
+                <td align="center">EXAMS <br>(70MKS)</td>
+                <td align="center">TOTAL <br>(100MKS)</td>
+                <td align="center">POS</td>
+                <td align="center">CLASS <br>AVERAGE</td>
+                <td align="center">LOWEST</td>
+                <td align="center">HIGHEST</td>
+                <td align="center">GRADE</td>
+                <td align="center">REMARK</td>
+            </tr>
+          <?php foreach ($studentrs as $rs) {
+              extract($rs);
+              $grade = $query->showGrade($total)[0];
+              $remark = $query->showGrade($total)[1];
+              if ($subj == "AGRICULTURAL SCIENCE") {
+                $subj = "AGRIC. SCIENCE";
+              } ?>
+          <tr>
+              <td colspan="2"><?= $subj; ?></td>
+              <td align="center"><?= $test; ?></td>
+              <td align="center"><?= $exam; ?></td>
+              <td align="center"><?= $total; ?></td>
+              <td align="center"><?= $subjpos; ?></td>
+          <td align="center"><?= round($classavg, 2); ?></td>
+              <td align="center"><?= $min; ?></td>
+              <td align="center"><?= $maxi; ?></td>
+              <td align="center"><?= $grade; ?></td>
+              <td><?= $remark; ?></td>
+          </tr>  
+          <?php } ?>
                                             <tr>
-                                                <th colspan="4">STUDENT NAME: <?= $name; ?></th>
-                                                 <th colspan="3">CLASS:<?= $gclass; ?></th>
-                                                  <th colspan="3">ADMISSION NO: <?= $gadmno; ?></th>                                                                           
-                                            </tr>
-                                      
-                                      
-                                            <tr>
-                                                
-                                             
-                                                <th colspan="4">SESSION: <?= $gsession; ?></th>
-                                                <th colspan="3">TERM: <?= $gterm; ?></th>
-                                                <th colspan="3">ATTENDANCE: <?php if($studentAtt){ echo $present; }?></th>                                                
-                                            </tr>
-                                            <tr>
-                                                 <th colspan="3">GENDER: <?= $sex; ?></th> 
-                                               <th colspan="3">DOB: <?= $dob; ?></th>
-                                               <th colspan="4">TOTAL DAYS: <?php if($studentAtt){ echo $total; } ?></th>
-                                               </tr>                                     
-                                            <tr>
-                                                <th>SUBJECTS</th>
-                                                <th>CA TOTAL <br>(30MKS)</th>
-                                                <th>EXAMS <br>(70MKS)</th>
-                                                <th>TOTAL <br>(100MKS)</th>
-                                                <th>POS</th>
-                                                <th>CLASS <br>AVERAGE</th>
-                                                <th>LOWEST</th>
-                                                <th>HIGHEST</th>
-                                                <th>GRADE</th>
-                                                <th>REMARK</th>
-                                            </tr>
-                                            <?php foreach ($studentrs as $rs) {
-                                                extract($rs);
-                                                $grade = $query->showGrade($total)[0];
-                                                $remark = $query->showGrade($total)[1];
-                                             ?>
-                                            <tr>
-                                                <th><?= $subj; ?></th>
-                                                <th><?= $test; ?></th>
-                                                <th><?= $exam; ?></th>
-                                                <th><?= $total; ?></th>
-                                                <th><?= $subjpos; ?></th>
-                                                <th><?= round($classavg, 2); ?></th>
-                                                <th><?= $min; ?></th>
-                                                <th><?= $maxi; ?></th>
-                                                <th><?= $grade; ?></th>
-                                                <th><?= $remark; ?></th>
-                                            </tr>  
-                                            <?php } ?>
-                                            <tr>
-       <th colspan="10">KEY TO GRADES: A1(EXCELLENT)=80-100%;&nbsp; B2(VERY GOOD)=75-79%; &nbsp; B3(GOOD)=65-69%; &nbsp;C4(CREDIT)=60-64%; &nbsp;
+       <td colspan="11" style="font-size: 12px;">KEY TO GRADES: A1(EXCELLENT)=80-100%;&nbsp; B2(VERY GOOD)=75-79%; &nbsp; B3(GOOD)=65-69%; &nbsp;C4(CREDIT)=60-64%; &nbsp;
        C5(CREDIT)=55-59%;&nbsp;C6(CREDIT)=50-54%; &nbsp;D7(PASS)=45-49%;&nbsp;E8(PASS)=40-44%;&nbsp;F9(FAIL)=0-39%
-                    </th></tr>
+                    </td></tr>
                     <tr>
-     <th align="left" colspan="3">TOTAL SUBJECTS:&nbsp;<?php echo htmlentities($subjectsTotal); ?></th>
-     <th align="left" colspan="3">TOTAL MARKS:&nbsp;</th>
-     <th align="left" colspan="4">MARKS OBTAINED:&nbsp;<?php echo htmlentities($gtotal); ?></th>
+     <td  colspan="4">TOTAL SUBJECTS:&nbsp;<?php echo htmlentities($subjectsTotal); ?></td>
+     <td  colspan="3">TOTAL MARKS:&nbsp; <?php echo htmlentities($subjectsTotal*100); ?></td>
+     <td colspan="4">MARKS OBTAINED:&nbsp;<?php echo htmlentities($gtotal); ?></td>
         </tr>
- <tr><th colspan="2">AVERAGE:&nbsp;<?php echo round($avg, 2); ?></th>
-          <th colspan="3">POS:&nbsp;<?php echo $pos; ?>&nbsp;OUT OF&nbsp;</th>
-          <th colspan="2">ANALYSIS:&nbsp;</th>
-          <th colspan="3">TERM STARTED:&nbsp;</th>
-          </tr>
+ <tr><td colspan="3">AVERAGE:&nbsp;<?php echo round($avg, 2); ?></td>
+    <td colspan="4" align="center">POSITION:&nbsp;<?php echo $query->position($position); ?>&nbsp;OUT OF&nbsp;<?= $totalStudents; ?></td>
+          <td colspan="4">ANALYSIS:&nbsp;<?php $analysis=""; if ($avg>=50){$analysis='PASSED';} else {   $analysis='FAILED'; } echo $analysis; ?></td>
+   </tr>
+        <tr><td colspan="3" align="center"><b>AFFECTIVE DOMAIN</b></td>
+            <td  colspan="3" align="center"><b>PSYCHOMOTOR DOMAIN</b></td>
+            
+
+      <td colspan="5" align="center">NEXT TERM STARTS:<?php if(!empty($nextterm)) { echo
+       htmlentities($nextterm); }   ?></td></tr>
+
+       <tr><td colspan="2">BEHAVIOUR</td>
+        <td >GRADING</td>
+        <td colspan="2">ACTIVITY</td><td>GRADING</td>
+        <td colspan="5"></td></tr>
+       <!-- <td colspan="5" align="center" bgcolor="#F5F5F5" rowspan="13"> -->
+
+        <?php 
+        // if ($fees) {
+
+        //  $total =$tuition+$dev+$medical+$exams+ $idcard + $locker + $cbooklet + $edulevy +$pta+$lesson+$utility+$cathe+$sports+$dvd+$party;
+         ?>
 
 
-        <tr><th colspan="3"><b>AFFECTIVE DOMAIN</b></th>
-            <th  colspan="3" ><b>PSYCHOMOTOR DOMAIN</b></th>
-            <th colspan='2'>TERM ENDED:&nbsp;<?php ?></th>
-            <th colspan="2" align="center">RESUMPTION:<?php  ?></th></tr>
+      <!--  <table border='1' width='100%' style="font-family:Courier NEW">
+       <tr><td colspan='2' align="center"><strong>NEXT TERM SCHOOL FEES</strong></td></tr>
+       <tr><td ><strong>Fees to be paid in the bank</strong></td><td ><strong>AMOUNT</strong></td></tr>
+       <tr><td colspan='2' >Bank Name: 0020993956.</td></tr>
+       <tr><td colspan='2' >Bank Account number: 0020993956.</td></tr>
+       <tr><td ><strong>Fees to be paid in School</strong></td><td ><strong>AMOUNT</strong></td></tr>
+     </table> -->
 
-       <tr><th colspan="2">BEHAVIOUR</th>
-        <th >GRADING</th>
-        <th  colspan="2">ACTIVITY</th><th>GRADING</th>
-       <th colspan="5" align="center" bgcolor="#F5F5F5" rowspan="13">
-       
+    <?php 
+     // if ($tuition > 0) {  echo "<tr><td >TUITION</td><td >$tuition</td></tr>"; }
 
+     // if ($tuition > 0) {  echo "<tr><td >TUITION</td><td >$tuition</td></tr>"; }
+     //   if ($dev > 0) {  echo "<tr><td >DEVELOPMENT LEVY</td><td >$dev</td></tr>"; }
+     //   if ($medical > 0) {  echo "<tr><td >MEDICAL</td><td >$medical</td></tr>"; }
+     //    if ($exams > 0) {  echo "<tr><td >EXAMINATIONS </td><td >$exams</td></tr>"; }
+     //      if ($idcard > 0) {  echo "<tr><td >ID CARD (SS ONE ONLY) </td><td >$idcard</td></tr>"; }
+     //        if ($locker > 0) {  echo "<tr><td >LOCKER </td><td >$locker</td></tr>"; }
+     //        if ($cbooklet > 0) {  echo "<tr><td >CONTINUOUS ASSESSMENT</td><td >$cbooklet</td></tr>"; }
+     //          if ($edulevy> 0) {  echo "<tr><td >EDUCATION LEVY </td><td >$edulevy</td></tr>"; }
+      
+     //    if ($pta > 0) {  echo "<tr><td >PTA</td><td >$pta</td></tr>"; }
+     //   if ($lesson > 0) {  echo "<tr><td >EXTRA CLASS</td><td >$lesson</td></tr>"; }
+     //   if ($utility > 0) {  echo "<tr><td >UTILITY</td><td >$utility</td></tr>"; }
+     //    if ($cathe > 0) {  echo "<tr><td >CATHEDRATICUM </td><td >$cathe</td></tr>"; }
+     //      if ($sports > 0) {  echo "<tr><td >SPORTS</td><td >$sports</td></tr>"; }
+     //        if ($party > 0) {  echo "<tr><td >CHRISTMAS PARTY</td><td >$party</td></tr>"; }
+     //        if ($dvd > 0) {  echo "<tr><td >DVD </td><td >$dvd</td></tr>"; }
+           //   echo "<tr><td ><strong>TOTAL</strong></td><td ><strong>N".number_format($total)."</strong></td></tr>";
+    // }else{ echo "SCHOOL FEES HAS NOT BEEN PUBLISHED. CONTACT FINANCE DEPARTMENT FOR DETAILS"; }
 
-       <table border='1' width='100%' style="font-family:Courier NEW">
-       <tr><th colspan='2' align='center'><strong>NEXT TERM SCHOOL FEES</strong></th></tr>
-       <tr><th><strong>ITEM</strong></th><th><strong>AMOUNT</strong></th></tr>
-       <?php  
-//        if ($fTuition > 0) {  echo "<tr><th>TUITION</th><th>$fTuition</th></tr>"; }
-//        if ($fDev > 0) {  echo "<tr><th>DEVELOPMENT LEVY</th><th>$fDev</th></tr>"; }
-//        if ($fMedical > 0) {  echo "<tr><th>MEDICAL LEVY</th><th>$fMedical</th></tr>"; }
-//         if ($fExams > 0) {  echo "<tr><th>EXAMINATIONS </th><th>$fExams</th></tr>"; }
-//           if ($fcard > 0) {  echo "<tr><th>ID CARD (SS ONE ONLY) </th><th>$fcard</th></tr>"; }
-//             if ($flocker > 0) {  echo "<tr><th>LOCKER </th><th>$flocker</th></tr>"; }
-//             if ($fbook > 0) {  echo "<tr><th>C.A. BOOKLET</th><th>$fbook</th></tr>"; }
-//               if ($flevy> 0) {  echo "<tr><th>EDUCATION LEVY </th><th>$flevy</th></tr>"; }
-//               echo "<tr><th><strong>TOTAL</strong></th><th><strong>$total1</strong></th></tr>";
-//                 echo "<tr><th colspan='2'>The above amount is to be paid to Diamond Bank
-// Account no: 0020993956.</th></tr>";
        ?>
 
-       </table>
+       <!-- </td></tr> -->
+
+            <tr><td  colspan="2">AEST. APPREC.</td><td><?php if(!empty($aestd)){echo htmlentities($aestd); }?></td><td class="text-left" colspan="2">GAMES</td><td><?php if(!empty($games)){ echo htmlentities($games); }?></td>
+            <td colspan="5" align="center"><strong>NEXT TERM SCHOOL FEES</strong></td>
+            </tr>
+
+             <tr><td colspan="2">CREATIVITY</td><td><?php if(!empty($creativity)){ echo $creativity;} ?></td><td colspan="2">SPORTS</td><td><?php if(!empty($sport)){ echo htmlentities($sport);} ?></td>
+              <?php if($fees) { ?>
+
+              <td colspan="4"> Fees to be paid in School</td><td><?= $pis; ?></td>
+            <?php } else { echo "<td colspan='5' align='center'>The School fees for next term has not</td>";} ?>
+             </tr>
+
+            <tr><td colspan="2">HONESTY</td><td><?php if(!empty($honesty)){ echo htmlentities($honesty);} ?></td><td  colspan="2">HANDLING TOOLS</td><td><?php if(!empty($handle)){echo $handle;} ?></td>
+              <?php if($fees) { ?>
+
+              <td colspan="4">Fees to be paid in the Bank</td><td><?= $pib; ?></td>
+            <?php } else { echo "<td colspan='5'> been published. Bank details:</td>";} ?>
+
+            </tr>
+
+            <tr><td colspan="2">INITIATIVE</td><td><?php if(!empty($initiative)){echo htmlentities($initiative);} ?></td><td  colspan="2">HANDWRITING</td><td><?php if(!empty($handle)){ echo $handle;} ?></td>
+              <td colspan="5">Bank Name: Access Bank Plc.</td>
+
+            </tr>
+
+            <tr><td colspan="2">LEADERSHIP ROLE</td><td><?php if(!empty($leadership)){echo htmlentities($leadership);} ?></td><td colspan="2" >COMMUNICATION </td><td><?php if(!empty($communication)){echo htmlentities($communication);} ?></td>
+              <td colspan="5" >Bank Account Number:  0020993956</td>
+
+            </tr>
+
+            <tr><td colspan="2">NEATNESS</td><td><?php if(!empty($neatness)){echo $neatness; }?></td><td  colspan="2">PAINTING &amp; DRW.</td><td><?php if(!empty($painting)){echo htmlentities($painting);} ?></td>
+              <td align="center"  colspan="5"></td>
+            </tr>
 
 
+            <tr><td colspan="2">OBEDIENCE</td><td><?php if(!empty($obedience)){echo htmlentities($obedience); } ?></td><td  colspan="2"> MUSICAL SKILL </td><td><?php if(!empty($painting)){echo htmlentities($painting);} ?></td>
+              <td align="center"  colspan="5"> <strong>KEY TO RATINGS</strong></td>
+            </tr>
 
-       <table border='1' width='100%' style="font-family:Courier NEW">
-     <tr><th><strong>ITEM</strong></th><th><strong>AMOUNT</strong></th></tr>
-       <?php  if ($fPta > 0) {  echo "<tr><th>PTA</th><th>$fPta</th></tr>"; }
-       if ($fLesson > 0) {  echo "<tr><th>EXTRA CLASS</th><th>$fLesson</th></tr>"; }
-       if ($fUtility > 0) {  echo "<tr><th>UTILITY</th><th>$fUtility</th></tr>"; }
-        if ($fCathe > 0) {  echo "<tr><th>CATHEDRATICUM </th><th>$fCathe</th></tr>"; }
-          if ($fSports > 0) {  echo "<tr><th>SPORTS</th><th>$fSports</th></tr>"; }
-            if ($fparty > 0) {  echo "<tr><th>CHRISMAS PARTY</th><th>$fparty</th></tr>"; }
-            if ($fDvd > 0) {  echo "<tr><th>DVD </th><th>$fDvd</th></tr>"; }
-              echo "<tr><th><strong>TOTAL</strong></th><th><strong>$total2</strong></th></tr>";
-                echo "<tr><th colspan='2'>Above amount to be paid in the sch.</th></tr>";
-       ?>
-
-       </table>
- <?php }else{ echo "SCHOOL FEES HAS NOT BEEN PUBLISHED. CONTACT FINANCE DEPARTMENT FOR DETAIALS"; } ?>
-
-       </th></tr>
-
-            <tr><th  colspan="2">AEST. APPREC.</th><th align='center'><?php echo htmlentities($aesth); ?></th><th align="left" colspan="2">GAMES</th><th align='center'><?php echo htmlentities($games); ?></th></tr>
-
-             <tr><th colspan="2">CREATIVITY</th><th align='center'><?php echo $creativity; ?></th><th colspan="2">SPORTS</th><th align='center'><?php echo htmlentities($sports); ?></th></tr>
-
-            <tr><th colspan="2">HONESTY</th><th align='center'><?php echo htmlentities($honesty); ?></th><th  colspan="2">HANDLING TOOLS</th><th align='center'><?php echo $handle; ?></th></tr>
-
-            <tr><th colspan="2">INITIATIVE</th><th align='center'><?php echo htmlentities($initiative); ?></th><th  colspan="2">HANDWRITING</th><th align='center'><?php echo $handle; ?></th></tr>
-
-            <tr><th colspan="2">LEADERSHIP ROLE</th><th align='center'><?php echo htmlentities($leadership); ?></th><th " colspan="2" >COMMUNICATION /th><th align='center'><?php echo htmlentities($communication); ?></th></tr>
-
-            <tr><th colspan="2">NEATNESS</th><th align='center'><?php echo $neatness; ?></th><th  colspan="2">PAINTING AND DRAWING</th><th align='center'><?php echo htmlentities($painting); ?></th></tr>
+            <tr><td colspan="2">POLITENESS</td><td><?php if(!empty($politeness)){echo $politeness; } ?></td>
+              <td colspan="2">CRAFT</td><td><?php if(!empty($craft)){echo $craft; }?></td>
+              <td colspan="3">A(EXCELLENT)</td><td colspan="2"> &#8805 80%</td>
+            </tr>
 
 
-            <tr><th colspan="2">OBEDIENCE</th><th align='center'><?php echo htmlentities($obedience); ?></th><th  colspan="2"> MUSICAL SKILL </th><th align='center'><?php echo htmlentities($painting); ?></th></tr>
+    <tr><td colspan="2">PUNCTUALITY</td><td><?php if(!empty($punctuality)){echo htmlentities($punctuality); } ?></td><td colspan="2">GYMNASTICS</td><td><?php if(!empty($gymnastics)){echo htmlentities($gymnastics);} ?></td>
+            <td colspan="3">B(VERY GOOD)</td><td colspan="2">60-79%</td>
+    </tr>
 
-            <tr><th colspan="2">POLITENESS</th><th align='center'><?php echo $politeness; ?></th><th colspan="2">CRAFT</th><th align='center'><?php echo $craft; ?></th></tr>
+            <tr><td colspan="2">SELF-CONTROL</td><td><?php if(!empty($scontrol)){ echo htmlentities($scontrol);} ?></td>
+              <td colspan="2">ORG. ABILITY</td><td><?php if(!empty($organised)){echo htmlentities($organised); } ?></td>
+              <td colspan="3">C(GOOD)</td><td colspan="2">50-59%</td>
+            </tr>
 
+            <tr><td colspan="2">SENSE OF RESP.</td><td><?php if (!empty($responsibility)) { echo htmlentities($responsibility); } ?></td><td colspan="2">PERSEVERANCE</td><td><?php if(!empty($persevere)){ echo htmlentities($persevere); } ?></td>
+              <td colspan="3" >D(FAIR)</td><td colspan="2">40-49%</td>
+              </tr>
 
-    <tr><th colspan="2">PUNCTUALITY</th><th align='center'><?php echo htmlentities($punctuality); ?></th><th colspan="2">GYMNASTICS</th><th align='center'><?php echo htmlentities($painting); ?></th></tr>
+           <tr><td colspan="2">SOCIABILITY</td><td><?php if(!empty($sociability)){echo htmlentities($sociability); } ?></td>
+            <td colspan="2" class="text-left">COOP. SPIRIT</td><td><?php if(!empty($cooperate)){echo htmlentities($cooperate); } ?></td>
+              <td colspan="3" >E(POOR)</td><td colspan="2">&lt;40%</td>
+           </tr>
 
-            <tr><th colspan="2">SELF-CONTROL</th><th align='center'><?php echo htmlentities($scontrol); ?></th><th align="center"  colspan="3"> <strong>KEY TO RATINGS</strong></th></tr>
+           <tr><td colspan="11" ><strong>FORM MASTERS' REMARKS:</strong><em><?php if(!empty($tcomment)){echo htmlentities($tcomment); } ?></em></td> </tr>
 
-            <tr><th colspan="2">SENSE OF RESPONSIBILITY</th><th align='center'><?php echo htmlentities($responsibility); ?></th><th colspan="2">A(EXCELLENT)</th><th> &#8805 80%</th></tr>
+           <tr><td colspan="11" class="text-left">SIGNATURE AND DATE:&nbsp;</td></tr>
 
-           <tr><th colspan="2">SOCIABILITY</th><th align='center'><?php echo htmlentities($sociability); ?></th><th colspan="2">B(VERY GOOD)</th><th>60-79%</th></tr>
+           <tr ><td colspan="11" class="text-left"><strong>PRINCIPAL'S REMARKS:</strong>&nbsp;</td></tr>
 
-           <tr><th colspan="2">ORG. ABILITY</th><th align='center'><?php echo htmlentities($organised); ?></th><th align="left">C(GOOD)</th><th>50-59%</th><th colspan="6">FORM MASTERS' REMARKS:&nbsp;<em><?php echo htmlentities($tcomment); ?></em></th> </tr>
-
-           <tr><th colspan="2">PERSEVERANCE</th><th align='center'><?php echo htmlentities($persevere); ?></th><th align="left" >D(FAIR)</th><th>40-49%</th><th colspan="6">SIGNATURE AND DATE:&nbsp;</th></tr>
-
-           <tr ><th colspan="2">COOP. SPIRIT</th><th align='center'><?php echo htmlentities($cooperate); ?></th><th align="left" >E(POOR)</th><th>&lt;40%</th><th colspan="6"><strong>PRINCIPAL'S REMARKS:</strong>&nbsp;</th></tr>
-
-     <tr ><th colspan="10">DATE AND SIGNATURE:</th></tr>
-       <tr><th colspan="10" align="center"><b>PRINCIPAL:&nbsp;<?php echo 'REV. SR. STELLA AKPAN ' ?></b> </th></tr>
-
-                                        </tbody>
+     <tr ><td colspan="6">DATE AND SIGNATURE:</td><td align="center" colspan="5"><b>PRINCIPAL:&nbsp;<?php echo 'REV. SR. STELLA AKPAN ' ?></b></td> </tr>
+                 
                                     </table>
                                 </div>
                             </div>
@@ -171,5 +209,4 @@
                 </div>
              </div>
            
-           <?php require 'adminfooter.php'; 
-           ?>
+           

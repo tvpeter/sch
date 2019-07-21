@@ -189,7 +189,7 @@
                         </div>
                                     <div class="form-actions">
                                         <button type="submit" class="btn btn-primary" name="postinfo"> <i class="fa fa-check"></i> Submit</button>
-                                        <button type="button" class="btn btn-inverse">Cancel</button>
+                                        <button type="reset" class="btn btn-inverse">Cancel</button>
                                     </div>
                                 </form>
                             </div>

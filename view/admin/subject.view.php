@@ -30,12 +30,12 @@
                            
                                 </form><hr>
                                 <?php if (isset($_POST['session']) && isset($_POST['class'])){ ?>
-                                <div class="p-3 mb-2 bg-primary text-white" align="center"><?= $_POST['class']." STUDENTS PERFORMANCE IN ".$_POST['subject']." ".$_POST['session']." ".$_POST['term']; ?></div>
+      <div class="p-3 mb-2 bg-primary text-white" align="center"><?= $_POST['class']." STUDENTS PERFORMANCE IN ".$_POST['subject']." ".$_POST['session']." ".$_POST['term']; ?></div>
                                   <div class="table-responsive m-t-40">
-                                    <table id="myTable" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+      <table id="myTable" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
                                         <thead>
-                                        <tr><th>SN</th><th>NAME</th><th>ADMNO</th><th>TOTAL CA</th>
-                                                <th>EXAM</th><th>TOTAL</th><th>POSITION</th><th>GRADE</th><th>REMARK</th>
+        <tr><th>SN</th><th>NAME</th><th>ADMNO</th><th>TOTAL CA</th>
+         <th>EXAM</th><th>TOTAL</th><th>POSITION</th><th>GRADE</th><th>REMARK</th>
                                             </tr></thead>
                                             
                                         <tbody>  
@@ -47,7 +47,7 @@
                               $grade = $query->showGrade($total)[0];
                               $remark = $query->showGrade($total)[1];
 
-                              $query->updateQuery("scores", ["subjpos"=> $n], ["admno"=>$admno, "subj"=>$_POST['subject'], "class"=>$_POST['class'], "term"=>$_POST['term'], "session"=>$_POST['session']]);
+       $query->updateQuery("scores", ["subjpos"=> $n], ["admno"=>$admno, "subj"=>$_POST['subject'], "class"=>$_POST['class'], "term"=>$_POST['term'], "session"=>$_POST['session']]);
 
                                 ?>  
                                             <tr style="font-weight: bold;">
@@ -62,8 +62,7 @@
                                                 <td class="text-success"><?= $remark; ?></td>
                                
                                              </tr>
-                                           <?php }}else{ 
-                                           echo "SELECT TO VIEW STUDENTS PERFORMANCE IN A SUBJECT";
+                <?php }}else{ echo "SELECT TO VIEW STUDENTS SCORES IN A SUBJECT";
                                          }
                                            ?>    
                                                                              
