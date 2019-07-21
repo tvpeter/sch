@@ -6,10 +6,16 @@ require 'bridge.php';
     if(isset($_GET['term']));      $gterm =$_GET['term']; 
 
     if ($gterm === "Term I"){ $nterm = "Term II";} else if ($gterm === "Term II"){$nterm = "Term III";} else if($gterm === "Term III"){$nterm = "Term I"; }
+
+    if($gterm === "Term III"){
     $newS = substr( $gsession, -4); $nn = $newS+1; $nsession = $newS.'/'.$nn;
+} else {
+    $nsession = $gsession;
+}
+
     $section = substr($gclass, 0, 2);
 
-    $fees =$query->selectRow(["*"], "fees", ["session"=>$nsession, "term"=>$nterm, "section"=>$section]);
+    $fees =$query->selectRow(["pib", "pis"], "newfees", ["session"=>$nsession, "term"=>$nterm, "section"=>$section]);
     if ($fees) {
         extract($fees);
     }

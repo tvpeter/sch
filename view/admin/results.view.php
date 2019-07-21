@@ -135,11 +135,18 @@
             </tr>
 
              <tr><td colspan="2">CREATIVITY</td><td><?php if(!empty($creativity)){ echo $creativity;} ?></td><td colspan="2">SPORTS</td><td><?php if(!empty($sport)){ echo htmlentities($sport);} ?></td>
-              <td colspan="4">Fees to be paid in School</td><td>Amount</td>
+              <?php if($fees) { ?>
+
+              <td colspan="4"> Fees to be paid in School</td><td><?= $pis; ?></td>
+            <?php } else { echo "<td colspan='5' align='center'>The School fees for next term has not</td>";} ?>
              </tr>
 
             <tr><td colspan="2">HONESTY</td><td><?php if(!empty($honesty)){ echo htmlentities($honesty);} ?></td><td  colspan="2">HANDLING TOOLS</td><td><?php if(!empty($handle)){echo $handle;} ?></td>
-              <td colspan="4">Fees to be paid in the Bank</td><td>Amount</td>
+              <?php if($fees) { ?>
+
+              <td colspan="4">Fees to be paid in the Bank</td><td><?= $pib; ?></td>
+            <?php } else { echo "<td colspan='5'> been published. Bank details:</td>";} ?>
+
             </tr>
 
             <tr><td colspan="2">INITIATIVE</td><td><?php if(!empty($initiative)){echo htmlentities($initiative);} ?></td><td  colspan="2">HANDWRITING</td><td><?php if(!empty($handle)){ echo $handle;} ?></td>
