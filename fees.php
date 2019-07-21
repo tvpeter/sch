@@ -39,7 +39,7 @@ if (isset($_POST['submit'])) {
 if (array_key_exists("check", $_POST) && isset($_POST['gsession']) && isset($_POST['gterm']) && isset($_POST['sectn']))
 	{
 		  
-    $feeDetails = $query->selectRow(["session", "term", "pib", "pis"], "newfees", ["session"=>$_POST['gsession'], "term"=>$_POST['gterm'],  "section"=>$_POST['sectn']]);
+    $feeDetails = $query->selectRow(["session", "term", "pib", "pis", "section"], "newfees", ["session"=>$_POST['gsession'], "term"=>$_POST['gterm'],  "section"=>$_POST['sectn']]);
   }
 
   

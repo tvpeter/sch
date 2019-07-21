@@ -30,7 +30,7 @@ if (isset($_GET['id']) && isset($_GET['session'])) {
 
   if (isset($_GET['fsession']) && isset($_GET['fterm'])) 
   {
-    if ($query->deleteRow("fees", ["session"=>$_GET['fsession'], "term"=>$_GET['fterm']])) {
+    if ($query->deleteRow("newfees", ["session"=>$_GET['fsession'], "term"=>$_GET['fterm']])) {
       header("location:fees.php");
     }   
   }

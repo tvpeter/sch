@@ -157,7 +157,7 @@
                                     echo "SELECT SESSION AND TERM TO VIEW THE SCHOOL FEES DETAILS ";
                                 }else{
                                     extract($feeDetails);
-                                    echo "SCHOOL FEES FOR ".strtoupper($term)." $session";
+                                    echo "SCHOOL FEES FOR ".strtoupper($term)." $session FOR $section CLASSES";
                                 ?>
                                
                             </div>
