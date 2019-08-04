@@ -1,4 +1,4 @@
-<?php 
+<?php
 require 'model/Connection.php';
 require 'model/QueryHandle.php';
 //require 'model/Router.php';
@@ -18,6 +18,3 @@ $query = new QueryHandle($conn);
 	// 		}
 	// 	return "";
 	// }
-
-
-
