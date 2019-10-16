@@ -43,6 +43,7 @@ if (isset($_POST['register'])) {
      }else {
         $dest = $query->uploadFile("passpt", "passports/");
 
+
         $query->dbInsert("students", [
         "name" => $_POST['studentname'],
         "admno" => $_POST['admno'],
@@ -55,6 +56,9 @@ if (isset($_POST['register'])) {
         "class" => $_POST['class'],
         "dater" => date('Y-m-d'),
         "session" => $_POST['session']]);
+
+        $query->dbInsert("combr", ["admno"=>$_POST['admno'], "class"=>$_POST['class'], "session"=>$_POST['session']]);
+
      }
  }
 

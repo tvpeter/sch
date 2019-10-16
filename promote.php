@@ -34,7 +34,10 @@ if (isset($_POST['submit']) && isset($_POST['pclass'])) {
       "name"=>$name, "admno"=>$admno, "dob"=>$dob, "sex"=>$sex, "address"=>$address, "phone"=>$phone,
       "email"=>$email, "passport"=>$passport, "class"=>$_POST['pclass'], "dater"=>$date, "session"=>$nsession]);
 
-    $query->dbInsert("combr", ["admno"=>$admno, "class"=>$_POST['pclass'], "session"=>$nsession]);
+      $checkCombr = $query->lookUp("admno", "combr", ["admno"=>$admno, "session"=>$nsession]);
+      if($checkCombr == 0){
+        $query->dbInsert("combr", ["admno"=>$admno, "class"=>$_POST['pclass'], "session"=>$nsession]);
+      }
      $suc['msg']='PROMOTED SUCCESSFULLY';
 
    }
