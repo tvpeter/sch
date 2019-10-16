@@ -24,7 +24,9 @@ if (isset($_POST['register'])) {
                 }
 
     if (empty($error)) {
-       
+    
+        $query->dbInsert("combr", ["admno"=>$_POST['admno'], "class"=>$_POST['class'], "session"=>$_POST['session']]);
+
         if ($_FILES['passpt']['size'] == 0 && empty($_FILES['passpt']['name']))
      {
         
@@ -41,6 +43,7 @@ if (isset($_POST['register'])) {
         "session" => $_POST['session']
     ]); 
      }else {
+
         $dest = $query->uploadFile("passpt", "passports/");
 
 
@@ -56,9 +59,6 @@ if (isset($_POST['register'])) {
         "class" => $_POST['class'],
         "dater" => date('Y-m-d'),
         "session" => $_POST['session']]);
-
-        $query->dbInsert("combr", ["admno"=>$_POST['admno'], "class"=>$_POST['class'], "session"=>$_POST['session']]);
-
      }
  }
 
