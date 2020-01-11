@@ -1,8 +1,5 @@
 <?php 
-
 require 'adminheader.php';
-require '../include/bootstrap.php';
-
 ?>
 
     <div id="main-wrapper">

@@ -1,5 +1,4 @@
 controller/config.php
-passports/
 controller/css
 controller/icons
 controller/images
@@ -9,29 +8,13 @@ Vagrantfile
 provision.sh
 config.php
 model/config.php
-view/admin/images/
-view/admin/icons/
 phpmyadmin
-*.less
-*.svg
-*.eot
-*.ttf
-*.woff
-*.png
-*.jpg
-*.html
-*.css
-*.js
-img/
 view/admin/README.md
 www/config.php
 namp.box
 editor.config
-sliders
-fonts
-icons
-images
-img
 .env
+view/public/404.html
+*.html
 
 

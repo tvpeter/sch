@@ -89,28 +89,46 @@
                         <li class="nav-devider"></li>
           <li class="nav-label">LABELS</li>
           <?php if ($_SESSION['role']== "admin") { ?>
-    <li><a href="users.php"><i class="fa fa-user-circle"></i>Create Users</a></li>
+            <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-plus"></i><span class="hide-menu">CREATE</span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="users.php"><i class="fa fa-user-circle"></i>Create Users</a></li>
     <li><a href="createclass.php"><i class="fa fa-plus-circle"></i>Create Class</a></li>
     <li><a href="subjects.php"><i class="fa fa-plus"></i>Create Subject</a></li>
      <li><a href="session.php"><i class="fa fa-plus-square"></i>Create Session</a></li>
-      <li><a href="termstatus.php"><i class="fa fa-tasks"></i>Set Terms' Status</a></li>
+    
+                            </ul>
+                        </li>
+                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-address-card"></i><span class="hide-menu">RESULTS</span></a>
+                            <ul aria-expanded="false" class="collapse">
+      <li><a href="termstatus.php"><i class="fa fa-check"></i>Approve Results</a></li>
+        <li><a href="subject.php"><i class="fa fa-clipboard"></i>Term Subject Scores</a></li>
+    <li><a href="viewresults.php"><i class="fa fa-paper-plane"></i>Term Results</a></li>
+    <li><a href="asubrecords.php"><i class="fa fa-gg-circle"></i>Annual Subject Scores</a></li>
+    <li><a href="annualresult.php"><i class="fa fa-address-card"></i>Annual Results</a></li>     
+                            </ul>
+                        </li>
+
+ <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-signal"></i><span class="hide-menu">RESULTS ANALYSIS</span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="analysis.php"><i class="fa fa-align-center"></i>Class Performance</a></li>
+        
+    <li><a href="ranalysis.php"><i class="fa fa-signal"></i>Term Results Analysis</a></li>
+    
+
+                            </ul>
+                        </li>
     <li><a href="registerstudent.php"><i class="fa fa-user-plus"></i>Register Student</a></li>
     <li><a href="allstudents.php"><i class="fa fa-users"></i>All Students</a></li>
     <li><a href="classtudents.php"><i class="fa fa-home"></i> Students In a Class</a></li>
     <li><a href="subno.php"><i class="fa fa-list-ol"></i>Set A Class Subjects No</a></li>
     <li><a href="subjectclass.php"><i class="fa fa-registered"></i>Register Class a Subject</a></li>   <hr>                
       
-    <li><a href="subject.php"><i class="fa fa-clipboard"></i>Term Subject Scores</a></li>
-    <li><a href="viewresults.php"><i class="fa fa-paper-plane"></i>Term Results</a></li>
-    <li><a href="asubrecords.php"><i class="fa fa-gg-circle"></i>Annual Subject Scores</a></li>
-    <li><a href="annualresult.php"><i class="fa fa-address-card"></i>Annual Results</a></li>
-        <hr>
+    
     <li><a href="announcement.php"><i class="fa fa-bullhorn"></i>Make Announcement</a></li>
     <li><a href="comments.php"><i class="fa fa-comments"></i>Read Users Comments</a></li>
-      <hr>  
-    <li><a href="analysis.php"><i class="fa fa-align-center"></i>Class Performance</a></li>
-        
-    <li><a href="ranalysis.php"><i class="fa fa-signal"></i>Term Results Analysis</a></li>
+    <li><a href="./docs/documentation.pdf" target="_blank"><i class="fa fa-book"></i>Documentation</a></li>
+
+  
       <hr>  
     <li><a href="fees.php"><i class="fa fa-calculator"></i>School Fees</a></li>
     <li><a href="terminfo.php"><i class="fa fa-info-circle"></i>Term Information</a></li>
@@ -129,8 +147,8 @@
     <li><a href="analysis.php"><i class="fa fa-align-center"></i>Class Performance</a></li>
         
     <li><a href="ranalysis.php"><i class="fa fa-signal"></i>Term Results Analysis</a></li>
-
-      
+    <li><a href="./docs/documentation.pdf" target="_blank"><i class="fa fa-book"></i>Documentation</a></li>
+    
     <?php }else{
         header("location:logout.php");
     } ?>
