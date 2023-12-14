@@ -45,7 +45,7 @@
 						<!-- Personal Detail -->
 						<div class="col-sm-6 col-xs-5 r-full-width">
 							<div class="personal-detail section-padding-top">
-								<h2>SR. STELLA AKPAN<strong>Principal</strong></h2>
+								<h2>SR.  AGATHA IWUEGBU<strong>Principal</strong></h2>
 								<ul class="social-icons">
 									<li><a href="#"><i class="fa fa-facebook"></i></a></li>
 									<li><a href="#"><i class="fa fa-twitter"></i></a></li>

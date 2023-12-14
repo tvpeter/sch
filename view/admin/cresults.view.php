@@ -97,7 +97,7 @@
 
           <tr ><td colspan="11"><strong>PRINCIPAL'S REMARKS:</strong>&nbsp;</td></tr>
 
-     <tr ><td colspan="6">DATE AND SIGNATURE:</td><td colspan="5" align="center"><b>PRINCIPAL:&nbsp;<?php echo 'REV. SR. STELLA AKPAN ' ?></b> </td></tr>
+     <tr ><td colspan="6">DATE AND SIGNATURE:</td><td colspan="5" align="center"><b>PRINCIPAL:&nbsp;<?php echo 'REV. SR.  AGATHA IWUEGBU ' ?></b> </td></tr>
                  
                                     </table>
                                 </div>

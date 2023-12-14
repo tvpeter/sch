@@ -345,7 +345,7 @@
 											<div class="tc-display-table">
 						<div class="tc-display-table-cell">
 						<div class="team-detail-inner-v2">
-					<h2>SR. STELLA AKPAN<span>Principal</span></h2>
+					<h2>SR.  AGATHA IWUEGBU<span>Principal</span></h2>
 					<div class="inner-v2-social">
 					<ul class="social-icons">
 				<li><a href="#"><i class="fa fa-facebook"></i></a></li>
@@ -479,7 +479,7 @@
 								<div class="container">
 		<ul id="team-slider-thumnail" class="team-slider-thumnail">
 	<li data-target="#product-thumnail" data-slide-to="0" class="active">
-	          		<h5>Rev. Sr. STELLA AKPAN</h5>
+	          		<h5>Rev. Sr.  AGATHA IWUEGBU</h5>
 											<span>Principal</span>
 						          	</li>
 	         	<li data-target="#product-thumnail" data-slide-to="1">

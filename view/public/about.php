@@ -67,7 +67,7 @@
 						<div class="aside-admin-detail">
 							<span class="admin-img-top"><img src="img/rr.jpg" alt="img-01"></span>
 							<p>St Catherine Ogoja over the years has not just excelled in academics per say, it has been known for incurcating societal morals in her students whose outstanding products attest to. Aside that fact, St. Catherine has developed its school environment a truly learning environment that is serene, peaceful and well managed. </p>
-							<span class="arthor-name">SR. STELLA AKPAN</span>
+							<span class="arthor-name">SR.  AGATHA IWUEGBU</span>
 													</div>
 					</div>
 					<!-- Admin Info -->
