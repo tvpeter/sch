@@ -45,12 +45,9 @@ if (isset($_POST['udpass']) && !empty($_POST['cpass']) && !empty($_POST['npass']
 
 	if (empty($msg)) {
 		
-	$options = [ 'cost' => 12, 
-	'salt' => mcrypt_create_iv(22, MCRYPT_DEV_URANDOM), ];
-	$updatedPass= password_hash($_POST['npass'], PASSWORD_BCRYPT, $options);
+	$updatedPass= password_hash($_POST['npass'], PASSWORD_BCRYPT, [ 'cost' => 12]);
 	
-
-		$query->updateQuery("uzerz", ["pvihiga"=>$updatedPass], ["name"=>$_SESSION['_ref_user'], "id"=>$_SESSION['_id_']]);
+	$query->updateQuery("uzerz", ["pvihiga"=>$updatedPass], ["name"=>$_SESSION['_ref_user'], "id"=>$_SESSION['_id_']]);
 		header("location:welc.php");
 	}
 }
@@ -72,8 +69,5 @@ if (isset($_POST['msend']) && !empty($_POST['mbody']) && !empty($_POST['msubject
 	header("Refresh:0"); }
 }
 
-
-
-
 require_once 'view/admin/profile.view.php';     
-?>            
+      
