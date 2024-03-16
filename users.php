@@ -37,8 +37,8 @@ if (isset($_POST['submit'])) {
     if (empty($error)) {
 
 
-      $options = [ 'cost' => 12, 
-  'salt' => mcrypt_create_iv(22, MCRYPT_DEV_URANDOM), ];
+      $options = [ 'cost' => 12,  'salt' => random_bytes(22)];
+      
   $pword= password_hash($_POST['pword'], PASSWORD_BCRYPT, $options);
 
          $query->dbInsert("uzerz", [ "ustarp"=>md5($_POST['uname']), "pvihiga"=>$pword,
