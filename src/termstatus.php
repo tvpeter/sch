@@ -5,7 +5,7 @@ $classes = $query->selectColumn("class", "class");
 $gterm = $query->term();
 $gsession = $query->sSession("session", "sessionstatus"); 
 
-$sessions = $query->selectColsOrder(["id", "session", "term", "status"], "termstatus", "session", "DESC");
+$sessions = $query->selectColsOrder(["id", "session", "term", "results_status"], "termstatus", "session", "DESC");
 
 if (isset($_POST['submit']) && !empty($_POST['session']) && !empty($_POST['term']) && !empty($_POST['class'])) {   
     $error = []; 
