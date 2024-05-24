@@ -1,20 +1,16 @@
-controller/config.php
-controller/css
-controller/icons
-controller/images
-controller/js
-default
-Vagrantfile
-provision.sh
-config.php
-model/config.php
-phpmyadmin
-view/admin/README.md
+src/config.php
+src/css
+src/icons
+src/images
+src/js
+src/model/config.php
+src/fonts
+src/img 
+src/passports 
+src/sliders
 www/config.php
-namp.box
 editor.config
 .env
-view/public/404.html
 *.html
 
 
