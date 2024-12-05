@@ -377,7 +377,7 @@ class QueryHandle
 	{
 
 		$stmt = $this->conn->prepare("SELECT class from class ORDER BY class ASC");
-		$stmt->bindParam(":cc", $class);
+		// $stmt->bindParam(":cc", $class); 
 		$stmt->execute();
 		return $stmt->fetchAll(PDO::FETCH_ASSOC);
 	}
