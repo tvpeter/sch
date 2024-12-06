@@ -12,5 +12,7 @@ www/config.php
 editor.config
 .env
 *.html
+.DS_Store
+
 
 
