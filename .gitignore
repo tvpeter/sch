@@ -13,6 +13,4 @@ editor.config
 .env
 *.html
 .DS_Store
-
-
-
+notes.md 
