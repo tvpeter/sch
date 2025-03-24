@@ -1,9 +1,7 @@
             <div class="container-fluid" align="center">
               <div class="row">
-
                 <div class="col-lg-12">
                   <div class="card">
-
                     <div class="card-body">
                       <div style="width:835px; font-size: 12px; font-family: 'Courier New', Courier, monospace;">
                         <table border="1">
@@ -14,9 +12,11 @@
                               <font face="Courier New, Courier, monospace"><tt>http://www.sccogoja.com</tt></font><br><b>STUDENTS RESULT</b>
                             </td>
                             <td>
-                              <div style="width:90px; height:90px;"><?php if (!empty($passport)) {
-                                                                      echo "<img src='passports/$passport' width='90' height='85'>  ";
-                                                                    } ?></div>
+                              <div style="width:90px; height:90px;">
+                                <?php if (!empty($passport)) {
+                                  echo "<img src='passports/$passport' width='90' height='85'>  ";
+                                } ?>
+                              </div>
                             </td>
                           </tr>
 
@@ -32,9 +32,12 @@
                             <td colspan="3">TERM: <?= strtoupper($gterm); ?></td>
                           </tr>
                           <tr>
-                            <td colspan="2">TOTAL DAYS: <?php if ($studentAtt) {
+                            <td colspan="2">TOTAL DAYS: <?php
+                                                        if ($studentAtt) {
                                                           echo $total;
-                                                        } ?></td>
+                                                        }
+                                                        ?>
+                            </td>
 
                             <td colspan="2">ATTENDANCE: <?php if ($studentAtt) {
                                                           echo $present;
@@ -59,13 +62,18 @@
                             <td align="center">GRADE</td>
                             <td align="center">REMARK</td>
                           </tr>
-                          <?php foreach ($studentrs as $rs) {
+
+                          <?php
+                          $calculatedTotal = 0;
+                          foreach ($studentrs as $rs) {
                             extract($rs);
                             $grade = $query->showGrade($total)[0];
                             $remark = $query->showGrade($total)[1];
                             if ($subj == "AGRICULTURAL SCIENCE") {
                               $subj = "AGRIC. SCIENCE";
-                            } ?>
+                            }
+                            $calculatedTotal += $total;
+                          ?>
                             <tr>
                               <td colspan="2"><?= $subj; ?></td>
                               <td align="center"><?= $test; ?></td>
@@ -87,6 +95,22 @@
                           <tr>
                             <td colspan="4">TOTAL SUBJECTS:&nbsp;<?php echo htmlentities($subjectsTotal); ?></td>
                             <td colspan="3">TOTAL MARKS:&nbsp; <?php echo htmlentities($subjectsTotal * 100); ?></td>
+                            <?php
+                            if (($calculatedTotal != $gtotal) && ($resultStatus['results_status'] != "approved")) {
+                              $calculated_average = $calculatedTotal / $subjectsTotal;
+                              $query->updateQuery(
+                                "results",
+                                ["gtotal" => $calculatedTotal, "avg" => $calculated_average],
+                                [
+                                  "admno" => $gadmno,
+                                  "class" => $gclass,
+                                  "session" => $gsession,
+                                  "term" => $gterm
+                                ]
+                              );
+                              header("Refresh:0");
+                            }
+                            ?>
                             <td colspan="4">MARKS OBTAINED:&nbsp;<?php echo htmlentities($gtotal); ?></td>
                           </tr>
                           <tr>

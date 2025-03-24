@@ -27,28 +27,62 @@ if ($gterm === "Term III") {
 
 $section = substr($gclass, 0, 2);
 
-$fees = $query->selectRow(["pib", "pis"], "newfees", ["session" => $nsession, "term" => $nterm, "section" => $section]);
+$fees = $query->selectRow(
+    ["pib", "pis"],
+    "newfees",
+    ["session" => $nsession, "term" => $nterm, "section" => $section]
+);
 if ($fees) {
     extract($fees);
 }
 
-$studentinfo = $query->getResults($gadmno, $gsession, $gclass, $gterm);
+$studentinfo = $query->getResults(
+    $gadmno,
+    $gsession,
+    $gclass,
+    $gterm
+);
 extract($studentinfo);
 
-$totalStudents = $query->lookUp("admno", "results", ["class" => $gclass, "session" => $gsession, "term" => $gterm]);
+$totalStudents = $query->lookUp(
+    "admno",
+    "results",
+    ["class" => $gclass, "session" => $gsession, "term" => $gterm]
+);
 
 
-$studentAtt = $query->selectRow(["*"], "skills", ["admno" => $gadmno, "session" => $gsession, "class" => $gclass, "term" => $gterm]);
+$studentAtt = $query->selectRow(
+    ["*"],
+    "skills",
+    ["admno" => $gadmno, "session" => $gsession, "class" => $gclass, "term" => $gterm]
+);
 if ($studentAtt) {
     extract($studentAtt);
 }
-$termInfo = $query->selectRow(["termst", "terme", "nextterm"], "control", ["session" => $gsession, "term" => $gterm]);
+
+$termInfo = $query->selectRow(
+    ["termst", "terme", "nextterm"],
+    "control",
+    ["session" => $gsession, "term" => $gterm]
+);
 if ($termInfo) {
     extract($termInfo);
 }
 
+$resultStatus = $query->selectRow(
+    ["results_status"],
+    "termstatus",
+    ["class" => $class, "session" => $session, "term" => $term]
+);
 
-$studentrs = $query->selectAndOrder(["subj", "test", "exam", "total", "classavg", "min", "maxi", "subjpos"], "scores", ["admno" => $gadmno, "session" => $gsession, "class" => $gclass, "term" => $gterm], "subj", "ASC");
+
+$studentrs = $query->selectAndOrder(
+    ["subj", "test", "exam", "total", "classavg", "min", "maxi", "subjpos"],
+    "scores",
+    ["admno" => $gadmno, "session" => $gsession, "class" => $gclass, "term" => $gterm],
+    "subj",
+    "ASC"
+);
 
 
 require 'view/admin/results.view.php';
