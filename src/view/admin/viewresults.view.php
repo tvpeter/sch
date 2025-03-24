@@ -65,8 +65,8 @@
                                          <td class="text-danger"><?= $n; ?></td>
                                          <td><?php if ($query->lookUp("id", "termstatus", ["class" => $_POST['class'], "session" => $_POST['session'], "term" => $_POST['term'], "results_status" => "approved"]) != 1) { ?>
                                                  <a href="resultsreview.php?cid=<?= $admno; ?>&class=<?= $_POST['class']; ?>&session=<?= $_POST['session']; ?>&term=<?= $_POST['term']; ?>" title="Review">
-                                                    <i class="fa fa-edit fa-2x"></i>
-                                                </a>
+                                                     <i class="fa fa-edit fa-2x"></i>
+                                                 </a>
                                              <?php } else {
                                                     echo "<i class='fa fa-lock'></i>";
                                                 } ?>
