@@ -109,7 +109,11 @@
                             $studentAvg = 0;
                           }
 
-                          $query->updateQuery("results", ["subjectsTotal" => $n, "gtotal" => $totalMarks, "avg" => $studentAvg], ["admno" => $gadmno, "class" => $gclass,  "session" => $gsession, "term" => $gterm]);
+                          $query->updateQuery(
+                            "results",
+                            ["subjectsTotal" => $n, "gtotal" => $totalMarks, "avg" => $studentAvg],
+                            ["admno" => $gadmno, "class" => $gclass,  "session" => $gsession, "term" => $gterm]
+                          );
                         } ?>
               </tbody>
               <tfoot>
